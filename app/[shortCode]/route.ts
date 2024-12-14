@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase";
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ shortCode: string }> },
 ) {
+    const supabase = await createClient();
     try {
         const { shortCode } = await params;
 

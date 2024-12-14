@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import crypto from 'crypto'
 
 const generateShortCode = () => {
@@ -8,7 +8,8 @@ const generateShortCode = () => {
 
 export async function POST(request: Request) {
   try {
-    const { url } = await request.json()
+    const supabase = await createClient();
+    const { url } = await request.json();
 
     if (!url) {
       return NextResponse.json({ error: 'URL is required' }, { status: 400 })
