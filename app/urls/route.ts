@@ -11,7 +11,8 @@ export async function GET() {
     if (error) throw error
 
     return NextResponse.json(data)
-  } catch (error) {
+  } catch (err) {
+    console.error('Error fetching URLs:', err)
     return NextResponse.json({ error: 'Failed to fetch URLs' }, { status: 500 })
   }
 } 
